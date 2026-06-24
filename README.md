@@ -7,6 +7,7 @@ Análisis de la Seguridad de Código Fuente Desarrollado con Asistencia GenAI
 
 Este repositorio contiene los artefactos de software generados y auditados como parte del Trabajo de Fin de Máster (TFM) del Máster Universitario en Ciberseguridad de la Universidad Internacional de La Rioja (UNIR).
 El proyecto evalúa empíricamente la seguridad por defecto del código generado por tres de los Modelos de Lenguaje Grande (LLMs) más extendidos de la industria bajo condiciones zero-shot.
+
 ⚠️ Advertencia de Seguridad
 > **¡ATENCIÓN!** El código fuente contenido en las carpetas `ChatGPT/`, `Claude/` y `Gemini/` fue generado por Inteligencia Artificial y **contiene vulnerabilidades críticas intencionales y no parcheadas** (como Inyección SQL, IDOR, RCE por subida de archivos y configuraciones inseguras).
 >
@@ -62,7 +63,12 @@ Navegar al módulo deseado e iniciar el servidor Flask:
 👥 Autores y Equipo de Investigación
 
 Trabajo de investigación empírica desarrollado por:
+
 César Augusto Salazar Valdez — Auditoría y análisis de Gemini
+
 Jonathan Gonzalo Diaz Angulo — Auditoría y análisis de ChatGPT
+
 Oscar Dario Lopez Jimenez — Auditoría y análisis de Claude
+
+
 Universidad Internacional de La Rioja (UNIR) — 2026.
