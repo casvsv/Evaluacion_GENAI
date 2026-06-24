@@ -1,8 +1,10 @@
 Análisis de la Seguridad de Código Fuente Desarrollado con Asistencia GenAI
+
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Flask](https://img.shields.io/badge/Flask-3.0+-green.svg)
 ![OWASP](https://img.shields.io/badge/OWASP-Top_10:_2025-red.svg)
 ![CVSS](https://img.shields.io/badge/CVSS-v4.0-purple.svg)
+
 Este repositorio contiene los artefactos de software generados y auditados como parte del Trabajo de Fin de Máster (TFM) del Máster Universitario en Ciberseguridad de la Universidad Internacional de La Rioja (UNIR).
 El proyecto evalúa empíricamente la seguridad por defecto del código generado por tres de los Modelos de Lenguaje Grande (LLMs) más extendidos de la industria bajo condiciones zero-shot.
 ⚠️ Advertencia de Seguridad
@@ -58,6 +60,7 @@ Navegar al módulo deseado e iniciar el servidor Flask:
    python app.py
    ```
 👥 Autores y Equipo de Investigación
+
 Trabajo de investigación empírica desarrollado por:
 César Augusto Salazar Valdez — Auditoría y análisis de Gemini
 Jonathan Gonzalo Diaz Angulo — Auditoría y análisis de ChatGPT
