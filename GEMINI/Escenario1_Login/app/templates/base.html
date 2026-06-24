@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - AuthSystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#10b981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Animaciones suaves para las notificaciones */
+        @keyframes slideIn {
+            from { transform: translateY(-10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .flash-message {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center text-xl font-bold text-primary transition-transform hover:scale-105">
+                        <i class="fas fa-shield-alt mr-2"></i> AuthSystem
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    {% if current_user.is_authenticated %}
+                        <span class="text-sm font-medium text-gray-600 hidden sm:block">{{ current_user.email }}</span>
+                        <a href="{{ url_for('main.logout') }}" class="text-gray-600 hover:text-red-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Cerrar Sesión</a>
+                    {% else %}
+                        <a href="{{ url_for('main.login') }}" class="text-gray-600 hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Iniciar Sesión</a>
+                        <a href="{{ url_for('main.register') }}" class="bg-primary hover:bg-indigo-700 text-white transition-colors px-4 py-2 rounded-md text-sm font-medium shadow-sm">Registrarse</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="w-full {% block container_class %}max-w-md space-y-8{% endblock %}">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="space-y-4 mb-6">
+                        {% for category, message in messages %}
+                            {% set bg_color = 'bg-blue-50 border-blue-200 text-blue-700' %}
+                            {% set icon = 'fa-info-circle' %}
+                            {% if category == 'success' %}
+                                {% set bg_color = 'bg-green-50 border-green-200 text-green-700' %}
+                                {% set icon = 'fa-check-circle' %}
+                            {% elif category == 'danger' %}
+                                {% set bg_color = 'bg-red-50 border-red-200 text-red-700' %}
+                                {% set icon = 'fa-exclamation-circle' %}
+                            {% elif category == 'warning' %}
+                                {% set bg_color = 'bg-yellow-50 border-yellow-200 text-yellow-700' %}
+                                {% set icon = 'fa-exclamation-triangle' %}
+                            {% endif %}
+                            <div class="flash-message border p-4 rounded-lg shadow-sm {{ bg_color }} flex items-center" role="alert">
+                                <i class="fas {{ icon }} mr-3 text-lg"></i>
+                                <p class="text-sm font-medium">{{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 mt-auto">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-400">
+                &copy; {{ moment_year|default('2026') }} AuthSystem. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

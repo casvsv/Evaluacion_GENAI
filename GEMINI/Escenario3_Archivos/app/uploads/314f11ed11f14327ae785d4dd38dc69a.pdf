@@ -1,0 +1,9 @@
+# Prueba de Concepto (PoC) - TFM Ciberseguridad
+
+def verificar_ejecucion():
+    mensaje = "Vulnerabilidad confirmada: El archivo .py fue procesado por el servidor."
+    print(mensaje)
+    return mensaje
+
+if __name__ == "__main__":
+    verificar_ejecucion()

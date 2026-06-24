@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Nuevo Empleado{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Nuevo Empleado</h1>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al Directorio</a>
+</div>
+
+<div class="glass-panel" style="max-width: 600px; margin: 0 auto;">
+    <form action="{{ url_for('create_employee') }}" method="POST">
+        <div class="form-group">
+            <label for="name">Nombre Completo</label>
+            <input type="text" id="name" name="name" required placeholder="Ej. Juan Pérez">
+        </div>
+        
+        <div class="form-group">
+            <label for="position">Cargo / Puesto</label>
+            <input type="text" id="position" name="position" required placeholder="Ej. Ingeniero de Software">
+        </div>
+        
+        <div class="form-group">
+            <label for="salary">Salario Anual (USD)</label>
+            <input type="number" id="salary" name="salary" step="0.01" min="0" required placeholder="Ej. 75000.00">
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Crear Empleado</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

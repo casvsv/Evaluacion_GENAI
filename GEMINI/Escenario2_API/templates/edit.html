@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Editar Empleado - {{ employee.name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Editar Empleado</h1>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al Directorio</a>
+</div>
+
+<div class="glass-panel" style="max-width: 600px; margin: 0 auto;">
+    <form action="{{ url_for('edit_employee', id=employee.id) }}" method="POST">
+        <div class="form-group">
+            <label for="name">Nombre Completo</label>
+            <input type="text" id="name" name="name" value="{{ employee.name }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="position">Cargo / Puesto</label>
+            <input type="text" id="position" name="position" value="{{ employee.position }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="salary">Salario Anual (USD)</label>
+            <input type="number" id="salary" name="salary" step="0.01" min="0" value="{{ employee.salary }}" required>
+        </div>
+        
+        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar Cambios</button>
+            <a href="{{ url_for('view_employee', id=employee.id) }}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

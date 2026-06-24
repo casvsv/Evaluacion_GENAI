@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block container_class %}max-w-5xl mx-auto space-y-8{% endblock %}
+{% block content %}
+<div class="bg-white overflow-hidden rounded-2xl shadow-xl border border-gray-100 w-full animate-[slideIn_0.4s_ease-out_forwards]">
+    <!-- Welcome Header -->
+    <div class="bg-gradient-to-r from-primary to-indigo-800 px-8 py-10 sm:px-12 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-white opacity-10 blur-3xl"></div>
+        <div class="absolute bottom-0 right-32 -mb-16 w-32 h-32 rounded-full bg-white opacity-10 blur-2xl"></div>
+        
+        <div class="flex items-center relative z-10">
+            <div class="h-20 w-20 bg-white rounded-full flex items-center justify-center text-primary text-3xl font-extrabold shadow-lg ring-4 ring-white/20">
+                {{ current_user.email[0] | upper }}
+            </div>
+            <div class="ml-8">
+                <h1 class="text-3xl font-extrabold text-white tracking-tight">¡Bienvenido a tu Panel Seguro!</h1>
+                <p class="mt-2 text-indigo-100 text-base font-medium flex items-center">
+                    <span class="w-2 h-2 bg-green-400 rounded-full mr-2 shadow-[0_0_8px_rgba(74,222,128,0.8)]"></span>
+                    Sesión iniciada correctamente como <span class="font-bold ml-1">{{ current_user.email }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stats / Content Area -->
+    <div class="px-8 py-10 sm:px-12 bg-gray-50/50">
+        <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+            <i class="fas fa-id-card text-primary mr-3"></i> Información de tu Perfil
+        </h3>
+        
+        <dl class="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition duration-300 hover:shadow-md hover:-translate-y-1">
+                <dt class="text-sm font-bold text-gray-500 uppercase tracking-wider flex items-center mb-2">
+                    <div class="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center mr-3 text-primary">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    Correo Electrónico
+                </dt>
+                <dd class="mt-1 text-lg font-medium text-gray-900 pl-11">{{ current_user.email }}</dd>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition duration-300 hover:shadow-md hover:-translate-y-1">
+                <dt class="text-sm font-bold text-gray-500 uppercase tracking-wider flex items-center mb-2">
+                    <div class="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center mr-3 text-primary">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    Miembro desde
+                </dt>
+                <dd class="mt-1 text-lg font-medium text-gray-900 pl-11">{{ current_user.created_at.strftime('%d de %B, %Y') }}</dd>
+            </div>
+        </dl>
+
+        <div class="mt-12 border-t border-gray-200/60 pt-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                <i class="fas fa-bolt text-yellow-500 mr-3"></i> Acciones Rápidas
+            </h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <a href="{{ url_for('main.logout') }}" class="group relative flex items-center justify-center px-6 py-4 border border-transparent shadow-sm text-sm font-bold rounded-xl text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all overflow-hidden">
+                    <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
+                    <i class="fas fa-sign-out-alt mr-2 group-hover:-translate-x-1 transition-transform"></i> Cerrar Sesión Segura
+                </a>
+                
+                <button type="button" class="group relative flex items-center justify-center px-6 py-4 border border-gray-200 shadow-sm text-sm font-bold rounded-xl text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all">
+                    <i class="fas fa-cog mr-2 text-gray-400 group-hover:rotate-90 transition-transform duration-500"></i> Configuración
+                </button>
+                
+                <button type="button" class="group relative flex items-center justify-center px-6 py-4 border border-indigo-100 shadow-sm text-sm font-bold rounded-xl text-primary bg-indigo-50 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all">
+                    <i class="fas fa-shield-alt mr-2 text-primary group-hover:scale-110 transition-transform"></i> Seguridad
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

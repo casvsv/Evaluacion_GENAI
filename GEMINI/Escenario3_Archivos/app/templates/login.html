@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-md mx-auto mt-10">
+    <div class="bg-slate-800/60 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-700/50 p-8 transform transition-all hover:shadow-primary-500/10 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-600 to-purple-600"></div>
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-white mb-2">Bienvenido de nuevo</h1>
+            <p class="text-slate-400">Ingresa a tu cuenta para continuar</p>
+        </div>
+        
+        <form method="POST" action="">
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" for="email">Correo Electrónico</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-regular fa-envelope text-slate-500"></i>
+                        </div>
+                        <input class="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all" id="email" name="email" type="email" required placeholder="tu@email.com">
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <label class="block text-sm font-medium text-slate-300" for="password">Contraseña</label>
+                        <a href="#" class="text-xs text-primary-400 hover:text-primary-300">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-lock text-slate-500"></i>
+                        </div>
+                        <input class="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all" id="password" name="password" type="password" required placeholder="••••••••">
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <input id="remember" name="remember" type="checkbox" class="h-4 w-4 bg-slate-900 border-slate-700 rounded text-primary-600 focus:ring-primary-500">
+                    <label for="remember" class="ml-2 block text-sm text-slate-400">
+                        Recordarme
+                    </label>
+                </div>
+                
+                <button type="submit" class="w-full bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-medium py-2.5 rounded-lg shadow-lg shadow-primary-500/25 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-primary-500">
+                    Iniciar Sesión
+                </button>
+            </div>
+        </form>
+        
+        <p class="mt-6 text-center text-sm text-slate-400">
+            ¿No tienes una cuenta? 
+            <a href="{{ url_for('main.register') }}" class="font-medium text-primary-400 hover:text-primary-300 transition-colors">Regístrate</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
