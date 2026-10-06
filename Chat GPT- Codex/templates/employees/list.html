@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Empleados | Gestion Empresarial{% endblock %}
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-center mb-4">
+    <div>
+        <h1 class="h3 mb-1">Empleados</h1>
+        <p class="text-muted mb-0">Administra nombres, cargos y salarios desde la web o la API REST.</p>
+    </div>
+    <a class="btn btn-primary" href="{{ url_for('employees.create_employee') }}">Nuevo empleado</a>
+</div>
+
+<form class="row g-2 mb-4" method="get">
+    <div class="col-sm-8 col-md-5">
+        <input class="form-control" name="id" value="{{ search_id }}" placeholder="Buscar por ID">
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+    </div>
+    <div class="col-auto">
+        <a class="btn btn-link" href="{{ url_for('employees.list_employees') }}">Ver todos</a>
+    </div>
+</form>
+
+{% if search_id %}
+    {% if employee %}
+    {% include "employees/_table.html" with context %}
+    {% else %}
+    <div class="alert alert-warning">No se encontro un empleado con ese ID.</div>
+    {% endif %}
+{% else %}
+    {% include "employees/_table.html" with context %}
+{% endif %}
+{% endblock %}

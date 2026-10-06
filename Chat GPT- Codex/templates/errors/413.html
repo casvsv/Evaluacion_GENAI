@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Archivo grande | Gestion Empresarial{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-6">Archivo demasiado grande</h1>
+    <p class="text-muted">El limite configurado es de 5 MB por archivo.</p>
+    <a class="btn btn-primary" href="{{ url_for('uploads.upload_file') }}">Volver a archivos</a>
+</div>
+{% endblock %}

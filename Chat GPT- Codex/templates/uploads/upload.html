@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Archivos | Gestion Empresarial{% endblock %}
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-3">Subir archivo</h1>
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                    <div class="mb-3">
+                        <label class="form-label" for="file">Documento PDF o imagen</label>
+                        <input class="form-control" id="file" name="file" type="file" accept=".pdf,.png,.jpg,.jpeg" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Subir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="h4 mb-3">Mis archivos</h2>
+                <div class="list-group list-group-flush">
+                    {% for file in files %}
+                    <div class="list-group-item px-0">
+                        <div class="fw-semibold">{{ file.original_filename }}</div>
+                        <div class="text-muted small">{{ file.content_type or 'tipo desconocido' }} · {{ file.size_bytes }} bytes · {{ file.uploaded_at }}</div>
+                    </div>
+                    {% else %}
+                    <div class="text-muted">Aun no has subido archivos.</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

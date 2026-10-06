@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Inicio | Gestion Empresarial{% endblock %}
+{% block content %}
+<section class="app-hero rounded-3 p-4 p-lg-5 text-white">
+    <div class="col-lg-8">
+        <h1 class="display-6 fw-bold">Panel Flask para identidad, empleados y archivos</h1>
+        <p class="lead mb-4">Una base funcional con autenticacion, recuperacion de contrasena, API REST, CRUD web y carga de documentos asociados al usuario.</p>
+        {% if current_user %}
+        <a class="btn btn-light btn-lg" href="{{ url_for('employees.list_employees') }}">Abrir empleados</a>
+        {% else %}
+        <a class="btn btn-light btn-lg" href="{{ url_for('auth.login') }}">Iniciar sesion</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

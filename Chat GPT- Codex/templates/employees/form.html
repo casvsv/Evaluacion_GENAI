@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} empleado | Gestion Empresarial{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-4">{{ action }} empleado</h1>
+                <form method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Nombre</label>
+                        <input class="form-control" id="name" name="name" value="{{ employee.name if employee else '' }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="position">Cargo</label>
+                        <input class="form-control" id="position" name="position" value="{{ employee.position if employee else '' }}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label" for="salary">Salario</label>
+                        <input class="form-control" id="salary" name="salary" type="number" min="0" step="0.01" value="{{ employee.salary if employee else '' }}" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit">{{ action }}</button>
+                    <a class="btn btn-link" href="{{ url_for('employees.list_employees') }}">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
