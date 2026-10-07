@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm mt-5">
+            <div class="card-body p-4">
+                <h3 class="text-center mb-4">Iniciar Sesión</h3>
+                <form method="POST" action="">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                        <label class="form-check-label" for="remember">Recordarme</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                </form>
+                <div class="text-center mt-3">
+                    <small><a href="{{ url_for('forgot_password') }}">¿Olvidaste tu contraseña?</a></small><br>
+                    <small>¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

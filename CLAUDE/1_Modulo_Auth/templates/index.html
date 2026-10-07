@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4">Bienvenido al Sistema</h1>
+        <p class="lead">Módulo de autenticación seguro en Flask.</p>
+        
+        {% if current_user.is_authenticated %}
+            <div class="card mt-4">
+                <div class="card-body bg-white shadow-sm rounded">
+                    <h5 class="card-title text-success">Acceso Concedido</h5>
+                    <p class="card-text">Estás logueado como: <strong>{{ current_user.email }}</strong></p>
+                    <p class="text-muted">Esta área es visible solo para usuarios autenticados.</p>
+                </div>
+            </div>
+        {% else %}
+            <div class="mt-4">
+                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg me-2">Iniciar Sesión</a>
+                <a href="{{ url_for('register') }}" class="btn btn-outline-secondary btn-lg">Crear Cuenta</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
