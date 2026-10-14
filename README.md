@@ -34,9 +34,9 @@ The repository is organized by the AI model being evaluated. Within each model, 
 ```
 ## 🔬 Audit Methodology
 Each module in this repository underwent a three-dimensional security analysis:
-*Static Analysis (SAST): Performed using Semgrep to detect syntactic best practices, embedded secrets, and tainted data flows.
-*Dynamic Analysis (DAST): Performed using OWASP ZAP on local Flask environments to validate security headers, injections, and configuration flaws.
-*Manual Penetration Testing: Business logic audit to identify architectural flaws (IDOR, BOLA, and authentication bypass) that evade automated scanning.
+* Static Analysis (SAST): Performed using Semgrep to detect syntactic best practices, embedded secrets, and tainted data flows.
+* Dynamic Analysis (DAST): Performed using OWASP ZAP on local Flask environments to validate security headers, injections, and configuration flaws.
+* Manual Penetration Testing: Business logic audit to identify architectural flaws (IDOR, BOLA, and authentication bypass) that evade automated scanning.
 The findings were taxonomically classified using the OWASP Top 10:2025 and CWE, and scored using the CVSS v4.0 system.
 ## 🚀 Local Deployment (Lab Environment)
 If you wish to set up any of the modules to replicate the audit, it is strongly recommended that you do so within an isolated virtual environment (`venv`).
