@@ -23,7 +23,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'una_clave_muy_secreta_y_segura_para_produccion_2026'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'a_very_secret_and_secure_key_for_production_2026'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \\
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -54,7 +54,7 @@ bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'main.login'
 login_manager.login_message_category = 'info'
-login_manager.login_message = 'Por favor inicia sesión para acceder a esta página.'
+login_manager.login_message = 'Please log in to access this page.'
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -143,7 +143,7 @@ main = Blueprint('main', __name__)
 def home():
     if current_user.is_authenticated:
         return redirect(url_for('main.dashboard'))
-    return render_template('login.html', title='Inicio de Sesión')
+    return render_template('login.html', title='Log In')
 
 @main.route("/register", methods=['GET', 'POST'])
 def register():
@@ -165,7 +165,7 @@ def register():
         user = User(username=username, email=email, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash('Tu cuenta ha sido creada. Ahora puedes iniciar sesión.', 'success')
+        flash('Your account has been created. You can now log in.', 'success')
         return redirect(url_for('main.login'))
         
     return render_template('register.html', title='Registro')
@@ -184,7 +184,7 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.dashboard'))
         else:
-            flash('Inicio de sesión fallido. Verifica tu email y contraseña.', 'danger')
+            flash('Login failed. Please check your email address and password.', 'danger')
             
     return render_template('login.html', title='Inicio de Sesión')
 
@@ -197,19 +197,19 @@ def logout():
 @login_required
 def dashboard():
     files = UploadedFile.query.filter_by(user_id=current_user.id).order_by(UploadedFile.upload_date.desc()).all()
-    return render_template('dashboard.html', title='Dashboard - Mis Archivos', files=files)
+    return render_template('dashboard.html', title='Dashboard - My Files', files=files)
 
 @main.route("/upload", methods=['POST'])
 @login_required
 def upload_file():
     if 'file' not in request.files:
-        flash('No se seleccionó ningún archivo.', 'danger')
+        flash('No files were selected.', 'danger')
         return redirect(request.url)
         
     file = request.files['file']
     
     if file.filename == '':
-        flash('No se seleccionó ningún archivo.', 'danger')
+        flash('No files were selected.', 'danger')
         return redirect(url_for('main.dashboard'))
         
     if file and allowed_file(file.filename):
@@ -218,11 +218,11 @@ def upload_file():
             new_file = UploadedFile(filename=unique_filename, original_filename=original_filename, owner=current_user)
             db.session.add(new_file)
             db.session.commit()
-            flash(f'El archivo {original_filename} se ha subido correctamente.', 'success')
+            flash(f'The file {original_filename} has been successfully uploaded.', 'success')
         else:
-            flash('Error al procesar el archivo.', 'danger')
+            flash('Error processing the file.', 'danger')
     else:
-        flash('Tipo de archivo no permitido. Solo se permiten: txt, pdf, png, jpg, jpeg, gif', 'danger')
+        flash('Unsupported file type. Only the following are allowed: txt, pdf, png, jpg, jpeg, gif', 'danger')
         
     return redirect(url_for('main.dashboard'))
 
@@ -232,7 +232,7 @@ def download_file(filename):
     file_record = UploadedFile.query.filter_by(filename=filename).first_or_404()
     # Verificar propiedad del archivo
     if file_record.owner != current_user:
-        flash('No tienes permiso para descargar este archivo.', 'danger')
+        flash('You do not have permission to download this file.', 'danger')
         return redirect(url_for('main.dashboard'))
         
     return send_from_directory(current_app.config['UPLOAD_FOLDER'], filename, download_name=file_record.original_filename)
@@ -242,17 +242,17 @@ def download_file(filename):
 def delete_file(file_id):
     file_record = UploadedFile.query.get_or_404(file_id)
     if file_record.owner != current_user:
-        flash('No tienes permiso para eliminar este archivo.', 'danger')
+        flash('You do not have permission to delete this file.', 'danger')
         return redirect(url_for('main.dashboard'))
         
     try:
         os.remove(os.path.join(current_app.config['UPLOAD_FOLDER'], file_record.filename))
     except FileNotFoundError:
-        pass # Si ya no existe en disco, solo borrar de BD
+        pass # If it no longer exists on disk, just delete it from the database
         
     db.session.delete(file_record)
     db.session.commit()
-    flash('El archivo ha sido eliminado.', 'info')
+    flash('The file has been deleted.', 'info')
     return redirect(url_for('main.dashboard'))
 """,
 
