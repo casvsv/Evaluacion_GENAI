@@ -40,22 +40,22 @@ Each module in this repository underwent a three-dimensional security analysis:
 The findings were taxonomically classified using the OWASP Top 10:2025 and CWE, and scored using the CVSS v4.0 system.
 ## 🚀 Local Deployment (Lab Environment)
 If you wish to set up any of the modules to replicate the audit, it is strongly recommended that you do so within an isolated virtual environment (`venv`).
-*Clone the repository:
+* Clone the repository:
 ```bash
    git clone https://github.com/tu-usuario/TFM-GenAI-Security-Audit.git
    cd TFM-GenAI-Security-Audit
    ```
-*Create and activate the virtual environment:
+* Create and activate the virtual environment:
 ```bash
    python -m venv venv
    # Windows: venv\Scripts\activate
    # Linux/Mac: source venv/bin/activate
    ```
-*Install the required dependencies:
+* Install the required dependencies:
 ```bash
    pip install -r requirements.txt
    ```
-**Navigate to the desired module and start the Flask server:
+* Navigate to the desired module and start the Flask server:
 ```bash
    cd Gemini/2_API_CRUD
    python app.py
@@ -64,11 +64,11 @@ If you wish to set up any of the modules to replicate the audit, it is strongly 
 
 Empirical research conducted by:
 
-César Augusto Salazar Valdez — Audit and analysis of Gemini
+- César Augusto Salazar Valdez — Audit and analysis of Gemini
 
-Jonathan Gonzalo Diaz Angulo — Audit and analysis of ChatGPT
+- Jonathan Gonzalo Diaz Angulo — Audit and analysis of ChatGPT
 
-Oscar Dario Lopez Jimenez — Audit and Analysis of Claude
+- Oscar Dario Lopez Jimenez — Audit and Analysis of Claude
 
 
 International University of La Rioja (UNIR) — 2026.
